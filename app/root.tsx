@@ -3,9 +3,16 @@ import {
   Links,
   Meta,
   Scripts,
+  Outlet,
   ScrollRestoration,
+  Link,
 } from "@remix-run/react";
+import type { LinksFunction } from "@remix-run/node";
+import appStylesHref from "./app.css?url";
 
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: appStylesHref },
+];
 export default function App() {
   return (
     <html lang="en">
@@ -36,15 +43,17 @@ export default function App() {
           <nav>
             <ul>
               <li>
-                <a href={`/contacts/1`}>Your Name</a>
+                <Link to={`/contacts/Thynne`}>Your Thynne</Link>
               </li>
               <li>
-                <a href={`/contacts/2`}>Your Friend</a>
+                <Link to={`/contacts/Data`}>Your Data</Link>
               </li>
             </ul>
           </nav>
         </div>
-
+        <div id="detail">
+          <Outlet />
+        </div>
         <ScrollRestoration />
         <Scripts />
       </body>
